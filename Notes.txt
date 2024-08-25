@@ -1,0 +1,317 @@
+Automation Testing:
+--------------------------
+-> Testing is performed by the automation tools instead of a person do the testing manually. 'Selenium' is one of the most popular automation testing tools out there.
+-> Some other automation tools are 'UFT', 'TestComplete', 'Cypress', "Tosca", 'Appium'
+
+Selenium:
+---------------
+-> Selenium is an open-source, automation testing tool used to test web applications across various browsers.
+-> The test scripts can be created in various programming languages like Java, C#, python etc.
+-> Selenium webdriver allows testing of web-applications only.
+
+-> There are four different tools of Selenium.
+1. Selenium Remote Control (Selenium RC)
+2. Selenium Grid
+3. Selenium IDE
+4. Selenium WebDriver
+
+Features of Selenium:
+---------------------------
+-> Open-source and portable
+-> Playback and record feature
+-> Cloud-based testing platform
+-> Supports various OS(Android, IOS, Linux, Windows, Mac, Solaris), languages(Java, Python, C#, Ruby, JavaScript, PHP etc.), and browsers(Google Chrome, Safari, Mozilla Firefox, Internet Explorer, Microsoft Edge etc.)
+-> Integration with testing frameworks like TestNG
+-> Supports parallel test execution which increases the efficiency of the tests.
+
+What is WebDriver?
+------------------------------
+-> It is one of the components of the selenium.
+-> It is simply a module in python.
+-> It is also an API(Application programming Interface).
+
+What are locators?
+------------------------
+-> locators are used to locate and interact with web-elements on a webpage.
+Here are the common locators available in Selenium WebDriver:
+
+1. ID: Locates an element by its unique ID attribute.
+=> driver.find_element(By.ID("elementId"));
+
+2. Name: Finds elements based on the name attribute.
+=> driver.find_element(By.NAME("elementName"));
+
+3. Class Name: Locates elements by their CSS class name.
+=> driver.find_elements(By.CLASS_NAME("className"));
+
+4. Tag_Name: Finds elements by their HTML tag name.
+=> driver.find_elements(By.TAG_NAME("tagName"));
+
+5. Link_Text: Locates anchor elements (<a> tags) by the exact text of their visible link.
+=> driver.find_element(By.LINK_TEXT("linkText"));
+
+6. Partial_Link_Text: Finds anchor elements (<a> tags) by partial match of their visible link text.
+=> driver.find_element(By.PARTIAL_LINK_TEXT("partialLinkText"));
+
+7. CSS_Selector: Locates elements by CSS selectors.
+=> driver.find_element(By.CSS_SELECTOR("cssSelector"));
+
+8. XPath: Uses XPath expressions to locate elements in the DOM.
+=> driver.find_element(By.XPATH("xpathExpression"));
+
+
+
+==> ID, NAME, LINK_TEXT, and PARTIAL_LINK_TEXT are generally used to locate the unique elements.
+    CLASS_NAME, TAG_NAME locators matches with the more than one element. So, in that case find_elements() method is used which will return a list of 'WebElements' instead of returning a single WebElement.
+
+==> CSS_SELECTOR and XPATH are customised selectors.
+
+* CSS Selector:  (Customised selector)
+-----------------------
+-> It can be used in multiple ways.
+1. tag with id -
+   tag_name#id
+2. tag with class -
+   tag_name.class_name
+3. tag with attribute -
+   tag_name[attribute = value]
+4. tag with class and attribute -
+   tag_name.class_name[attribute=value]
+
+* XPATH (XML Path):
+------------------------------
+-> It is a syntax or language for finding any element on the webpage using XML expression.
+-> XPath can be used to find the location of any element on the webpage using HTML DOM structure.
+-> XPath can be used to navigate through elements and attributes in DOM.
+-> It is simply an address of the element.
+
+Types of XPath:
+----------------------
+1. Absolute XPath
+   -> /html/body/div/div/div/section[1]/div[2]/div/div/div/div/div/form/div/input
+2. Relative XPath
+   -> //*[@id="Form_submitForm_action_request"]
+
+* Differences between absolute and relative XPath:
+---------------------------------------------------------
+-> Absolute XPath always starts from the root HTML node whereas, Relative XPath directly jumps to the element on DOM.
+-> Absolute XPath starts with /. Relative XPath starts from //.
+-> In Absolute XPath, only tags/nodes are used but in relative XPath, attributes are also used.
+
+* How to write the XPaths manually:
+----------------------------------------------------------
+-> Absolute Path:
+html/body/div[7]/section/div/div/div/div/div/div/div[1]/div/div[1]/div/a[1]
+
+-> Relative xpath:
+syntax - //tag_name[@attribute='value']
+
+//a[@class="blue-button"] - nopcommerce
+
+
+* How to capture the XPaths automatically:
+------------------------------------------------------------
+1. Right click on element -> inspect -> right click on highlight HTML -> copy XPath or copy full XPath
+2. SelectorsHub
+
+* Reasons to prefer relative XPaths;
+-> If the developer introduced a new element then the absolute path will be broken.
+-> if the developer changes the location of the element then absolute XPath will be broken.
+
+Xpath Options:
+--------------------
+-> or   -     //tag_name[@attribute1="value1" or @attribute2=value2]
+-> and   -    //tag_name[@attribute1="value1" or @attribute2=value2]
+-> contains()  - //tag_name[contains(@attribute, value)]
+-> starts-with()  -  //tag_name[starts-with(@attribute, value)]
+
+-> text()  - //tag_name[text()='value']
+
+* text() method is used when we're trying to find the element using the inner-text.
+
+Xpath axes:
+------------------
+    axes                          syntax
+  --------                       ---------
+-> self
+-> parent -            //*[attribute='value']/parent::tagname
+-> child -             //*[attribute='value']/child::tagname
+-> following -         //*[attribute='value']/following::tagname
+-> preceding -         //*[attribute='value']/preceding::tagname
+-> ancestor -          //*[attribute='value']/ancestor::tagname
+-> descendant -        //*[attribute='value']/descendant::tagname
+-> following-sibling - //current_html_tag[@attribute='value']/following-sibling::sibling_tag[@attribute='value']
+-> preceding-sibling - //current_html_tag[@attribute='value']/preceding-sibling::previous_tag[@attribute='value']
+
+various methods or commands provided by the web driver:
+--------------------------------------------------------
+
+1. Application commands
+2. Conditional commands
+3. Browser commands
+4. Navigational commands
+5. Wait commands
+
+1. Application commands:
+---------------------------
+# All the below commands can be accessible by driver object
+
+- get() - used to open the application
+- title - used to get the title of the current page
+- current_url - used to get the current URL of the page
+- page_source - used to get the page source of the page
+
+2. Conditional commands: ( returns boolean value )
+-----------------------------
+# Below commands are accessible to WebElement only
+
+- is_displayed()
+- is_enabled()
+- is_selected()
+
+3. Browser commands:
+--------------------------
+- close():
+  -> This command closes the currently active window that the web driver is controlling.
+  -> If multiple windows or tabs are open, close() will only close the current window or tab and keep the WebDriver session alive, allowing interaction with the remaining windows or tabs.
+- quit():
+  -> This command closes all windows associated with the WebDriver instance and terminates the WebDriver session.
+  -> After calling quit(), the WebDriver instance is no longer usable, and a new instance must be created to perform further actions.
+
+4. Navigational commands:
+-----------------------------
+- back()
+- forward()
+- refresh()
+
+"""
+
+         find_element()                                       find_elements()
+      ---------------------                                -----------------------
+-> It returns a single WebElement.            -> It returns multiple WebElement in the form of a
+                                                 list.
+-> If we provide a locator that matches       -> If we provide a locator that matches with only a
+   with multiple WebElements, then it            single WebElement, then also it will return a
+   will return the first element that            list but with only 1 element inside the list.
+   matches with the locator.
+-> If the locator doesn't match with          -> If the locator doesn't match with any of the
+    WebElement, then this method will             WebElement, this method will return an empty
+    throw NoSuchElementException.                 list.
+
+"""
+
+Differences between 'text' and 'get_attribute('attribute_name')':
+-----------------------------------------------------------------------
+-> text: It returns the innerText of the element
+-> get_attribute('attribute_name'): It returns the value of the passed attribute of the element.
+
+5. wait commands:
+---------------------------
+-> implicit wait
+-> explicit wait
+
+=> time.sleep(seconds):
+----------------------------------------------------------
+   advantages:
+   ---------------
+   -> Simple to use
+   Disadvantages:
+   ---------------
+   -> Performance of the script will be reduced.
+   -> If the element is loaded within the specified time, still it will wait for the remaining time that is mentioned in the sleep() method.
+   -> If the element is not loaded within the time specified, there might be a chance for exception
+
+=> implicit wait:
+---------------------------------------------------------------
+advantages:
+----------------
+-> Single line statement is needed for the whole script
+-> Performance will not be reduced.
+-> If the element is loaded within the specified time, it will execute the further statements.
+disadvantages:
+-----------------
+->  If the element is not loaded within the time specified, there might be a chance for exception.
+
+=> explicit wait:
+------------------------------
+-> Explicit wait works based on some conditions
+advantages:
+-----------------
+-> More efficient use
+disadvantages:
+-----------------
+-> Use in multiple places
+-> Difficult to use
+
+=> Working with different WebElements ( go through the WebElements package )
+1. checkbox element
+2. link element
+3. dropdown element
+4. alerts/ pop-ups
+5. iframes
+   -> driver.switch_to.frame(name of the frame)
+   -> driver.switch_to.frame(id of the frame)
+   -> driver.switch_to.frame(WebElement)
+   -> driver.switch_to.frame(0) - if only 1 iframe is available in the page
+
+   switch_to.default_content() - control switches to the main frame
+   switch_to.parent_frame() - control switches to the previous frame
+
+6. browser windows
+   -> we can navigate our driver from one window to another using 'browser window id'.
+
+   -> driver.current_window_handle -> returns the windowId of a single browser window
+   -> driver.window_handles -> returns the windowId of multiple  browser windows.
+7. web tables
+8. broken links
+9. date picker
+
+Mouse Operations:
+------------------------------------------
+-> Mouse hover         - move_to_element(element)
+-> Right click         - context_click(element)
+-> Double click        - double_click(element)
+-> Drag and drop       - drag_and_drop(source_element, target_element)
+-> Sliders             - drag_and_drop_offset(element, x_offset-, y_offset)
+
+=> A class 'ActionChains' is there in selenium to work with mouse operations.
+
+
+Keyboard Actions:
+--------------------------------------------
+
+-> select, copy and paste the text
+
+Download & Upload:
+--------------------------------------------
+
+
+How to capture the screenshot of a webpage:
+--------------------------------------------
+
+Cookies:
+--------------
+-> driver.get_cookies()  - to get the all the cookies in a list in which each cookie is a dictionary.
+-> driver.add_cookie(cookie) - add cookie in the browser
+-> driver.delete_cookie(cookie_name) - delete the cookie
+-> driver.delete_all_cookies() - delete all the cookies
+
+Headless Mode Testing: (Test without opening the browser)
+---------------------------
+advantages:
+---------------
+-> perform multiple tasks parallely
+-> headless testing doesn't render the UI elements. Thus, script execution will be faster in this mode.
+
+disadvantages:
+----------------
+-> debugging can be difficult as the UI is not visible in this mode.
+
+
+Data Driven Testing:
+----------------------
+-> Reading data from Excel sheet
+-> Writing data into Excel sheet
+
+-> Data driven testing
+
